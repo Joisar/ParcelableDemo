@@ -25,6 +25,7 @@ public class MainActivity extends ListActivity {
 	public static final String bundleExtra = "bundleExtra";
 	public static final String bitmapExtra = "bitmapExtra";
 	public static final String drawableExtra = "drawableExtra";
+	public static final String intArrayExtra = "intArrayExtra";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,12 @@ public class MainActivity extends ListActivity {
 		return drawable;
     }
     
+    private int[] getIntegerArray() {
+    	int[] intArray = new int[2];
+    	intArray[0] = 1;
+    	intArray[1] = 2;
+		return intArray;
+    }
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String selected_value = l.getAdapter().getItem(position).toString();
@@ -104,10 +111,10 @@ public class MainActivity extends ListActivity {
 		bundle.putSerializable(mymapExtra, map);
 		bundle.putParcelable(bitmapExtra, getBimtap());
 		bundle.putParcelable(drawableExtra, ((BitmapDrawable)getDrawable()).getBitmap());
-		
 		Intent intent = new Intent(v.getContext(), ReadDataActivity.class);
 		intent.putExtra(extra, myParcelable);
 		intent.putExtra("setter", setter);
+		bundle.putIntArray(intArrayExtra, getIntegerArray());
 		intent.putExtra(bundleExtra, bundle);
 		startActivity(intent);
 	}

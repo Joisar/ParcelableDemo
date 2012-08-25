@@ -27,7 +27,8 @@ public class MyParcelable implements Parcelable{
 		this.selected = selected;
 	}
 
-	public MyParcelable() {}
+	public MyParcelable() {
+	}
 	
 	public MyParcelable(Parcel parcel) {
 		selected = parcel.readString();

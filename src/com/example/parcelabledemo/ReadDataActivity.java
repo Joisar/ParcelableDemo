@@ -27,6 +27,10 @@ public class ReadDataActivity extends Activity{
 		String valueOfSelecteditem = myParcelable.getSelected();
 		Log.v("value", valueOfSelecteditem);
 		
+		int[] intArray = bundleMapAndBitmap.getIntArray(MainActivity.intArrayExtra);
+		for (int i = 0; i < intArray.length; i++) {
+			Log.d("integer array", intArray[i]+"");
+		}
 		@SuppressWarnings("unchecked")
 		HashMap<String, Integer> map = (HashMap<String, Integer>) bundleMapAndBitmap.getSerializable(MainActivity.mymapExtra);
 		int position = map.get(valueOfSelecteditem);
