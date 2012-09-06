@@ -20,17 +20,22 @@ public class ReadDataActivity extends Activity{
 		
 		initComponents();
 
+		// only for parcelable
 		Bundle bundleParcelable = getIntent().getExtras();
-		Bundle bundleMapAndBitmap = getIntent().getBundleExtra(MainActivity.bundleExtra);
-		
 		MyParcelable myParcelable = bundleParcelable.getParcelable(MainActivity.extra);
 		String valueOfSelecteditem = myParcelable.getSelected();
 		Log.v("value", valueOfSelecteditem);
 		
-		int[] intArray = bundleMapAndBitmap.getIntArray(MainActivity.intArrayExtra);
-		for (int i = 0; i < intArray.length; i++) {
-			Log.d("integer array", intArray[i]+"");
+		String[][] strArray = myParcelable.getStrArray();
+		for (int i = 0; i < strArray.length; i++) {
+			for (int j = 0; j < strArray.length; j++) {
+				Log.d("String Array", strArray[i][j]);
+			}
 		}
+
+		// for other Parcelables.
+		Bundle bundleMapAndBitmap = getIntent().getBundleExtra(MainActivity.bundleExtra);
+		
 		@SuppressWarnings("unchecked")
 		HashMap<String, Integer> map = (HashMap<String, Integer>) bundleMapAndBitmap.getSerializable(MainActivity.mymapExtra);
 		int position = map.get(valueOfSelecteditem);
